@@ -1,0 +1,50 @@
+{
+  "name": "papalapa/laravel-smsc",
+  "description": "Send SMS codes through SMSC.ru gateway",
+  "keywords": [
+    "SMSC.ru",
+    "SMS"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Dmitriy K.",
+      "email": "dmitriy.kim@mail.ru"
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "sort-packages": true
+  },
+  "require": {
+    "php": "^8.0",
+    "ext-pdo": "*",
+    "illuminate/config": "^8.33",
+    "illuminate/database": "^8.33",
+    "illuminate/support": "^8.33"
+  },
+  "autoload": {
+    "psr-4": {
+      "Papalapa\\Laravel\\Smsc\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Papalapa\\Laravel\\Smsc\\Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Papalapa\\Laravel\\Smsc\\SmscServiceProvider"
+      ]
+    }
+  },
+  "require-dev": {
+    "fakerphp/faker": "^1.13",
+    "laravel/framework": "^8.33",
+    "mockery/mockery": "^1.4"
+  }
+}
