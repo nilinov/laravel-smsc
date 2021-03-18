@@ -2,7 +2,6 @@
 
 namespace Papalapa\Laravel\Smsc;
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Papalapa\Laravel\Smsc\Contracts\SenderContract;
 use Papalapa\Laravel\Smsc\Services\CodeCreator;
@@ -37,7 +36,7 @@ final class SmscServiceProvider extends ServiceProvider
             __DIR__ . '/../config/smsc.php' => config_path('smsc.php'),
         ], 'config');
 
-        if (!Schema::hasTable('sms_codes')) {
+        if (!class_exists('CreateSmsCodesTable')) {
             $this->publishes([
                 __DIR__ . '/../database/migrations/stub_create_sms_codes_table.php'
                 => database_path('migrations/' . date('Y_m_d_His') . '_create_sms_codes_table.php'),
