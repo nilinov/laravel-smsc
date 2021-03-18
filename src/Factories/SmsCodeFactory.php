@@ -26,7 +26,7 @@ final class SmsCodeFactory extends Factory
     {
         return [
             'id' => $this->faker->uuid,
-            'tel' => $this->generateNumber(),
+            'number' => $this->generateNumber(),
             'code' => $this->generateCode(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

@@ -35,7 +35,7 @@ final class CodeValidator
     private function findLatest(PhoneNumber $phoneNumber, string $code): ?SmsCode
     {
         $smsCode = SmsCode::query()
-            ->where('tel', '=', $phoneNumber->numeric())
+            ->where('number', '=', $phoneNumber->numeric())
             ->where('code', '=', $code)
             ->orderByDesc('serial')
             ->latest()

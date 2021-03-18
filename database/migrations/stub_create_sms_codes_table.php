@@ -18,7 +18,7 @@ final class CreateSmsCodesTable extends Migration
             $table->timestamp('updated_at')->nullable()->default(null);
             $table->timestamp('deleted_at')->nullable()->default(null);
 
-            $table->index(['tel', 'code']);
+            $table->index(['number', 'code']);
         });
 
         DB::statement('ALTER TABLE sms_codes MODIFY serial BIGINT UNSIGNED NOT NULL UNIQUE AUTO_INCREMENT');

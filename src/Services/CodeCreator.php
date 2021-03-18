@@ -14,7 +14,7 @@ final class CodeCreator
     public function create(PhoneNumber $phoneNumber): SmsCode
     {
         $code = new SmsCode([
-            'tel' => $phoneNumber->numeric(),
+            'number' => $phoneNumber->numeric(),
             'code' => $this->generateCode($this->size),
         ]);
 
