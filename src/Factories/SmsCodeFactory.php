@@ -1,6 +1,6 @@
 <?php
 
-namespace Papalapa\Laravel\Smsc\Database\Factories;
+namespace Papalapa\Laravel\Smsc\Factories;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;

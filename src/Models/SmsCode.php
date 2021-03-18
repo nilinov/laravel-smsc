@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Papalapa\Laravel\Smsc\Database\Factories\SmsCodeFactory;
+use Papalapa\Laravel\Smsc\Factories\SmsCodeFactory;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -44,6 +44,11 @@ final class SmsCode extends Model
         $this->id = Uuid::uuid4()->toString();
 
         parent::__construct($attributes);
+    }
+
+    protected static function newFactory(): SmsCodeFactory
+    {
+        return new SmsCodeFactory();
     }
 
     public function isAliveAfter(int $seconds): bool
