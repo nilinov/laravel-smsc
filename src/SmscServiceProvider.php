@@ -36,12 +36,10 @@ final class SmscServiceProvider extends ServiceProvider
             __DIR__ . '/../config/smsc.php' => config_path('smsc.php'),
         ], 'config');
 
-        if (!class_exists('CreateSmsCodesTable')) {
-            $this->publishes([
-                __DIR__ . '/../database/migrations/stub_create_sms_codes_table.php'
-                => database_path('migrations/' . date('Y_m_d_His') . '_create_sms_codes_table.php'),
-            ], 'migrations');
-        }
+        $this->publishes([
+            __DIR__ . '/../database/migrations/stub_create_sms_codes_table.php'
+            => database_path('migrations/' . date('Y_m_d_His') . '_create_sms_codes_table.php'),
+        ], 'migrations');
     }
 
     public function register(): void
