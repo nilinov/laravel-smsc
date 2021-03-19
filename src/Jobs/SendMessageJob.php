@@ -18,10 +18,8 @@ final class SendMessageJob implements ShouldQueue, ShouldBeUnique
 
     public int $timeout = 5;
 
-    public function __construct(
-        private PhoneNumber $phoneNumber,
-        private string $text
-    ) {
+    public function __construct(private PhoneNumber $phoneNumber, private string $text)
+    {
     }
 
     public function handle(Repository $config): void

@@ -21,11 +21,14 @@
   "require": {
     "php": "^8.0",
     "ext-pdo": "*",
-    "illuminate/config": "^8.33",
-    "illuminate/database": "^8.33",
-    "illuminate/support": "^8.33"
+    "laravel/framework": "^8.30"
+  },
+  "suggest": {
+    "laravel/framework": ""
   },
   "autoload": {
+    "classmap": [
+    ],
     "psr-4": {
       "Papalapa\\Laravel\\Smsc\\": "src/"
     }
@@ -43,8 +46,6 @@
     }
   },
   "require-dev": {
-    "fakerphp/faker": "^1.13",
-    "laravel/framework": "^8.33",
-    "mockery/mockery": "^1.4"
+    "fakerphp/faker": "^1.13"
   }
 }
