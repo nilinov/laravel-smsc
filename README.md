@@ -126,7 +126,11 @@ or validate the token directly in controller action:
 
 ```php
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;use Papalapa\Laravel\Smsc\Exceptions\DecryptTokenException;use Papalapa\Laravel\Smsc\Exceptions\ExpiredTokenException;use Papalapa\Laravel\Smsc\Exceptions\InvalidTokenException;use Papalapa\Laravel\Smsc\Services\TokenGenerator;
+use Illuminate\Validation\ValidationException;
+use Papalapa\Laravel\Smsc\Exceptions\DecryptTokenException;
+use Papalapa\Laravel\Smsc\Exceptions\ExpiredTokenException;
+use Papalapa\Laravel\Smsc\Exceptions\InvalidTokenException;
+use Papalapa\Laravel\Smsc\Services\TokenGenerator;
 
 class AccountController
 {
