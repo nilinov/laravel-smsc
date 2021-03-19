@@ -13,7 +13,7 @@ final class GatewaySender implements SenderContract
     public function __construct(
         private Repository $config,
         private Dispatcher $jobDispatcher,
-        private ?string $connection
+        private ?string $connection = null
     ) {
     }
 
