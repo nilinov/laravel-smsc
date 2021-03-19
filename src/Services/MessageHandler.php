@@ -36,7 +36,7 @@ final class MessageHandler
 
     public function validateCode(PhoneNumber $tel, string $code): bool
     {
-        return $this->codeChecker->check($tel, $code);
+        return $this->codeChecker->validate($tel, $code);
     }
 
     public function generateToken(PhoneNumber $tel): string

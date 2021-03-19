@@ -14,12 +14,12 @@ final class CodeValidator
 
     public function ensure(PhoneNumber $phoneNumber, string $code): void
     {
-        if (false === $this->check($phoneNumber, $code)) {
+        if (false === $this->validate($phoneNumber, $code)) {
             throw new InvalidSmsCodeException(__('smsc.invalid_code'));
         }
     }
 
-    public function check(PhoneNumber $phoneNumber, string $code): bool
+    public function validate(PhoneNumber $phoneNumber, string $code): bool
     {
         $smsCode = $this->findLatest($phoneNumber, $code);
 
