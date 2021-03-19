@@ -10,9 +10,8 @@ final class TokenizedPhoneNumber
 {
     public const TOKENIZED_PHONE_NUMBER = 'tokenizedPhoneNumber';
 
-    public function __construct(
-        private TokenGenerator $tokenGenerator
-    ) {
+    public function __construct(private TokenGenerator $tokenGenerator)
+    {
     }
 
     public static function getPhoneNumber(Request $request): PhoneNumber

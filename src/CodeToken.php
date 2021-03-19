@@ -8,10 +8,8 @@ final class CodeToken
 {
     private int $expireAt;
 
-    public function __construct(
-        private PhoneNumber $phoneNumber,
-        int $lifetime,
-    ) {
+    public function __construct(private PhoneNumber $phoneNumber, int $lifetime)
+    {
         $this->expireAt = Carbon::now()->addSeconds($lifetime)->getTimestamp();
     }
 

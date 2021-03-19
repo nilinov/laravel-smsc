@@ -8,14 +8,14 @@ use Papalapa\Laravel\Smsc\PhoneNumber;
 
 final class CodeValidator
 {
-    public function __construct(private int $lifetime = 60)
+    public function __construct(private int $lifetime)
     {
     }
 
     public function ensure(PhoneNumber $phoneNumber, string $code): void
     {
         if (false === $this->check($phoneNumber, $code)) {
-            throw new InvalidSmsCodeException('Код проверки неверен');
+            throw new InvalidSmsCodeException('Code is invalid');
         }
     }
 
@@ -38,7 +38,6 @@ final class CodeValidator
             ->where('number', '=', $phoneNumber->numeric())
             ->where('code', '=', $code)
             ->orderByDesc('serial')
-            ->latest()
             ->first();
 
         if ($smsCode instanceof SmsCode) {

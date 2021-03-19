@@ -14,7 +14,7 @@ final class TokenGenerator
 {
     public function __construct(
         private Encrypter $encrypter,
-        private int $lifetime = 600
+        private int $lifetime,
     ) {
     }
 
@@ -30,13 +30,13 @@ final class TokenGenerator
         try {
             $token = $this->encrypter->decrypt($data);
             if (!($token instanceof CodeToken)) {
-                throw new InvalidTokenException('Данный запрос требует валидный токен');
+                throw new InvalidTokenException('This request needs valid token');
             }
             if (!$token->isStillValid()) {
-                throw new ExpiredTokenException('Срок действия вашего токена истёк');
+                throw new ExpiredTokenException('This token is expired');
             }
         } catch (DecryptException) {
-            throw new DecryptTokenException('Токен данного запроса не прошёл проверку');
+            throw new DecryptTokenException('Cannot resolve token data');
         }
 
         return $token->getPhoneNumber();
