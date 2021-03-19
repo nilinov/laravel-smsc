@@ -6,8 +6,6 @@ use Papalapa\Laravel\Smsc\Exceptions\IncorrectPhoneNumberException;
 
 final class PhoneNumber
 {
-    public const MASK = '/^\+7\(\d{3}\)\d{3}\-\d{2}\-\d{2}$/';
-
     private string $number;
 
     public function __construct(string $number)
@@ -17,11 +15,10 @@ final class PhoneNumber
 
     private function convertToNumeric(string $number): string
     {
-        // Removes non-numeric symbols from phone number: +7 (100) 200-30-40 => 71002003040
         $number = preg_replace('/[\+\(\)\s-]/', '', $number);
 
         if (false === $this->isNumeric($number)) {
-            throw new IncorrectPhoneNumberException('Некорректный номер телефона');
+            throw new IncorrectPhoneNumberException('Incorrect phone number');
         }
 
         return $number;
@@ -29,7 +26,7 @@ final class PhoneNumber
 
     private function isNumeric(string $number): bool
     {
-        return preg_match('/^7\d{10}$/', $number) === 1;
+        return preg_match('/^\d{10,15}$/', $number) === 1;
     }
 
     public static function fromString(string $tel): self
@@ -50,10 +47,5 @@ final class PhoneNumber
     public function prefixed(): string
     {
         return sprintf('+%d', $this->number);
-    }
-
-    public function masked(): string
-    {
-        return preg_replace('/^7(\d{3})(\d{3})(\d{2})(\d{2})$/', '+7($1)$2-$3-$4', $this->number);
     }
 }
