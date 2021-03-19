@@ -7,7 +7,7 @@ use Papalapa\Laravel\Smsc\PhoneNumber;
 
 final class CodeCreator
 {
-    public function __construct(private int $size = 6)
+    public function __construct(private CodeGenerator $codeGenerator)
     {
     }
 
@@ -15,18 +15,13 @@ final class CodeCreator
     {
         $code = new SmsCode([
             'number' => $phoneNumber->numeric(),
-            'code' => $this->generateCode($this->size),
+            'code' => $this->codeGenerator->generate(),
         ]);
 
         if (!$code->save()) {
-            throw new \PDOException('Не удалось сохранить смс-код в БД');
+            throw new \PDOException('Cannot save SMS-code into DB');
         }
 
         return $code;
-    }
-
-    private function generateCode(int $size): string
-    {
-        return sprintf("%0{$size}d", random_int(0, 10 ** $size - 1));
     }
 }

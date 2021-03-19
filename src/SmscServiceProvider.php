@@ -4,7 +4,8 @@ namespace Papalapa\Laravel\Smsc;
 
 use Illuminate\Support\ServiceProvider;
 use Papalapa\Laravel\Smsc\Contracts\SenderContract;
-use Papalapa\Laravel\Smsc\Services\CodeCreator;
+use Papalapa\Laravel\Smsc\Middlewares\ThrottleRequests;
+use Papalapa\Laravel\Smsc\Services\CodeGenerator;
 use Papalapa\Laravel\Smsc\Services\CodeValidator;
 use Papalapa\Laravel\Smsc\Services\GatewaySender;
 use Papalapa\Laravel\Smsc\Services\LogSender;
@@ -17,7 +18,7 @@ final class SmscServiceProvider extends ServiceProvider
         $this->registerPublishable();
         $this->mergeConfigFrom(__DIR__ . '/../config/smsc.php', 'smsc');
 
-        $this->app->when(CodeCreator::class)
+        $this->app->when(CodeGenerator::class)
             ->needs('$size')->give(config('smsc.code_size'));
 
         $this->app->when(CodeValidator::class)
@@ -28,6 +29,9 @@ final class SmscServiceProvider extends ServiceProvider
 
         $this->app->when(GatewaySender::class)
             ->needs('$connection')->give(config('smsc.queue_connection'));
+
+        $this->app->when(ThrottleRequests::class)
+            ->needs('$limit')->give(config('smsc.throttling_limit'));
     }
 
     protected function registerPublishable(): void
