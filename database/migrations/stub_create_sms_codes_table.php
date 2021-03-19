@@ -12,7 +12,7 @@ final class CreateSmsCodesTable extends Migration
         Schema::create('sms_codes', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->unsignedBigInteger('serial')->nullable(false)->unique();
-            $table->char('number', 11)->nullable(false);
+            $table->string('number', 16)->nullable(false);
             $table->char('code', 6)->nullable(false);
             $table->timestamp('created_at')->nullable(false)->useCurrent();
             $table->timestamp('updated_at')->nullable()->default(null);
