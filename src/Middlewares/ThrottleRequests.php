@@ -3,17 +3,28 @@
 namespace Papalapa\Laravel\Smsc\Middlewares;
 
 use Illuminate\Cache\RateLimiter;
+use Illuminate\Routing\Middleware\ThrottleRequests as BaseThrottleRequests;
 use Symfony\Component\HttpFoundation\Response;
 
-final class ThrottleRequests extends \Illuminate\Routing\Middleware\ThrottleRequests
+final class ThrottleRequests
 {
-    public function __construct(RateLimiter $limiter, private int $limit)
-    {
-        parent::__construct($limiter);
+    public function __construct(
+        private RateLimiter $limiter,
+        private int $limit,
+        private int $decayMinutes = 1,
+        private string $prefix = 'smsc_',
+    ) {
     }
 
-    public function handle($request, \Closure $next, $maxAttempts = 60, $decayMinutes = 1, $prefix = ''): Response
+    public function handle($request, \Closure $next): Response
     {
-        return parent::handle($request, $next, $this->limit);
+        return (new BaseThrottleRequests($this->limiter))
+            ->handle(
+                $request,
+                $next,
+                $this->limit,
+                $this->decayMinutes,
+                $this->prefix
+            );
     }
 }
