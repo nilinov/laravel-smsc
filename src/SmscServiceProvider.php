@@ -41,6 +41,11 @@ final class SmscServiceProvider extends ServiceProvider
         ], 'config');
 
         $this->publishes([
+            __DIR__ . '/../resources/lang/en/smsc.php' => resource_path('lang/en/smsc.php'),
+            __DIR__ . '/../resources/lang/ru/smsc.php' => resource_path('lang/ru/smsc.php'),
+        ], 'lang');
+
+        $this->publishes([
             __DIR__ . '/../database/migrations/stub_create_sms_codes_table.php'
             => database_path('migrations/' . date('Y_m_d_His') . '_create_sms_codes_table.php'),
         ], 'migrations');

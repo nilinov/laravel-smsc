@@ -15,7 +15,7 @@ final class CodeValidator
     public function ensure(PhoneNumber $phoneNumber, string $code): void
     {
         if (false === $this->check($phoneNumber, $code)) {
-            throw new InvalidSmsCodeException('Code is invalid');
+            throw new InvalidSmsCodeException(__('smsc.invalid_code'));
         }
     }
 

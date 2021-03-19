@@ -12,10 +12,8 @@ use Papalapa\Laravel\Smsc\PhoneNumber;
 
 final class TokenGenerator
 {
-    public function __construct(
-        private Encrypter $encrypter,
-        private int $lifetime,
-    ) {
+    public function __construct(private Encrypter $encrypter, private int $lifetime)
+    {
     }
 
     public function generate(PhoneNumber $tel): string
@@ -30,13 +28,13 @@ final class TokenGenerator
         try {
             $token = $this->encrypter->decrypt($data);
             if (!($token instanceof CodeToken)) {
-                throw new InvalidTokenException('This request needs valid token');
+                throw new InvalidTokenException(__('smsc.invalid_token'));
             }
             if (!$token->isStillValid()) {
-                throw new ExpiredTokenException('This token is expired');
+                throw new ExpiredTokenException(__('smsc.expired_token'));
             }
         } catch (DecryptException) {
-            throw new DecryptTokenException('Cannot resolve token data');
+            throw new DecryptTokenException(__('smsc.token_decryption_failed'));
         }
 
         return $token->getPhoneNumber();

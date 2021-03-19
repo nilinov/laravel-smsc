@@ -18,7 +18,7 @@ final class PhoneNumber
         $number = preg_replace('/[\+\(\)\s-]/', '', $number);
 
         if (false === $this->isNumeric($number)) {
-            throw new IncorrectPhoneNumberException('Incorrect phone number');
+            throw new IncorrectPhoneNumberException(__('smsc.invalid_phone_number'));
         }
 
         return $number;

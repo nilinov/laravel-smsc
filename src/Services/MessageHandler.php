@@ -2,6 +2,7 @@
 
 namespace Papalapa\Laravel\Smsc\Services;
 
+use Illuminate\Translation\Translator;
 use Papalapa\Laravel\Smsc\Contracts\SenderContract;
 use Papalapa\Laravel\Smsc\PhoneNumber;
 use Papalapa\Laravel\Smsc\SmsMessage;
@@ -13,13 +14,14 @@ final class MessageHandler
         private CodeCreator $codeCreator,
         private CodeValidator $codeChecker,
         private TokenGenerator $tokenGenerator,
+        private Translator $translator,
     ) {
     }
 
     public function sendCode(PhoneNumber $phoneNumber): SmsMessage
     {
         $smsCode = $this->codeCreator->create($phoneNumber);
-        $message = sprintf('Verification code: %s', $smsCode->code);
+        $message = sprintf('%s: %s', __('smsc.code_description'), $smsCode->code);
 
         return $this->send($phoneNumber, $message);
     }

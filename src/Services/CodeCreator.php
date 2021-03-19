@@ -19,7 +19,7 @@ final class CodeCreator
         ]);
 
         if (!$code->save()) {
-            throw new \PDOException('Cannot save SMS-code into DB');
+            throw new \PDOException(__('smsc.code_creation_failed'));
         }
 
         return $code;
