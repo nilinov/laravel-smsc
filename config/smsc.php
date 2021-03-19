@@ -26,4 +26,6 @@ return [
 
     'queue_connection' => env('SMSC_QUEUE_CONNECTION'),
 
+    'throttling_limit' => env('SMSC_THROTTLING_LIMIT', 2),
+
 ];
