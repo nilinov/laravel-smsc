@@ -30,7 +30,7 @@ final class SendMessageJob implements ShouldQueue, ShouldBeUnique
             'login' => $config->get('smsc.api_login'),
             'psw' => $config->get('smsc.api_password'),
             'sender' => $config->get('smsc.sender_name'),
-            'phones' => $this->phoneNumber->prefixed(),
+            'phones' => $this->phoneNumber->numeric(),
             'mes' => $this->text,
         ]);
     }
