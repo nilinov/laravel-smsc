@@ -20,7 +20,7 @@ final class GatewaySender implements SenderContract
     public function send(SmsMessage $sms): void
     {
         $message = $this->appendMessageSender($sms->text());
-        $job = new SendMessageJob($sms->tel(), $message);
+        $job = new SendMessageJob($sms->phoneNumber(), $message);
         $job->onConnection($this->connection);
         $this->jobDispatcher->dispatch($job);
     }

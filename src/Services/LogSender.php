@@ -14,7 +14,7 @@ final class LogSender implements SenderContract
 
     public function send(SmsMessage $sms): void
     {
-        $message = sprintf('SMS to [%s]: %s', $sms->tel()->numeric(), $sms->text());
+        $message = sprintf('SMS to [%s]: %s', $sms->phoneNumber()->numeric(), $sms->text());
 
         $this->logger->info($message);
     }

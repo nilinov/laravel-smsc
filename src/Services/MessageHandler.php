@@ -26,22 +26,22 @@ final class MessageHandler
         return $this->send($phoneNumber, $message);
     }
 
-    private function send(PhoneNumber $tel, string $message): SmsMessage
+    private function send(PhoneNumber $phoneNumber, string $message): SmsMessage
     {
-        $sms = new SmsMessage($tel, $message);
+        $sms = new SmsMessage($phoneNumber, $message);
         $this->sender->send($sms);
 
         return $sms;
     }
 
-    public function validateCode(PhoneNumber $tel, string $code): bool
+    public function validateCode(PhoneNumber $phoneNumber, string $code): bool
     {
-        return $this->codeChecker->validate($tel, $code);
+        return $this->codeChecker->validate($phoneNumber, $code);
     }
 
-    public function generateToken(PhoneNumber $tel): string
+    public function generateToken(PhoneNumber $phoneNumber): string
     {
-        return $this->tokenGenerator->generate($tel);
+        return $this->tokenGenerator->generate($phoneNumber);
     }
 
     public function validateToken(string $data): PhoneNumber
@@ -49,8 +49,8 @@ final class MessageHandler
         return $this->tokenGenerator->validate($data);
     }
 
-    public function sendMessage(PhoneNumber $tel, string $message): SmsMessage
+    public function sendMessage(PhoneNumber $phoneNumber, string $message): SmsMessage
     {
-        return $this->send($tel, $message);
+        return $this->send($phoneNumber, $message);
     }
 }

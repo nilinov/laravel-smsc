@@ -4,13 +4,13 @@ namespace Papalapa\Laravel\Smsc;
 
 final class SmsMessage
 {
-    public function __construct(private PhoneNumber $tel, private string $text)
+    public function __construct(private PhoneNumber $phoneNumber, private string $text)
     {
     }
 
-    public function tel(): PhoneNumber
+    public function phoneNumber(): PhoneNumber
     {
-        return $this->tel;
+        return $this->phoneNumber;
     }
 
     public function text(): string

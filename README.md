@@ -71,7 +71,7 @@ class SmsController
         $tel = PhoneNumber::fromString($request->input('tel'));
         $sms = $messageHandler->sendCode($tel);
         
-        return ['sent_to' => $sms->tel()->numeric()];
+        return ['sent_to' => $sms->phoneNumber()->numeric()];
     }
     
     public function checkCode(

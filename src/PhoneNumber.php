@@ -29,14 +29,14 @@ final class PhoneNumber
         return preg_match('/^\d{10,15}$/', $number) === 1;
     }
 
-    public static function fromString(string $tel): self
+    public static function fromString(string $number): self
     {
-        return new self($tel);
+        return new self($number);
     }
 
-    public static function asNumeric(string $tel): string
+    public static function asNumeric(string $number): string
     {
-        return (new self($tel))->number;
+        return (new self($number))->number;
     }
 
     public function numeric(): string
