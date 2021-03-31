@@ -3,6 +3,7 @@
 namespace Papalapa\Laravel\Smsc\Middlewares;
 
 use Illuminate\Cache\RateLimiter;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Middleware\ThrottleRequests as BaseThrottleRequests;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -16,7 +17,7 @@ final class ThrottleRequests
     ) {
     }
 
-    public function handle($request, \Closure $next): Response
+    public function handle(Request $request, \Closure $next): Response
     {
         return (new BaseThrottleRequests($this->limiter))
             ->handle(
