@@ -15,7 +15,7 @@ final class PhoneNumber
 
     private function convertToNumeric(string $number): string
     {
-        $number = preg_replace('/[\+\(\)\s-]/', '', $number);
+        $number = preg_replace('/[\+\(\)\.\s-]/', '', $number);
 
         if (false === $this->isNumeric($number)) {
             throw new IncorrectPhoneNumberException(__('smsc.invalid_phone_number'));
