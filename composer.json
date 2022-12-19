@@ -21,7 +21,7 @@
   "require": {
     "php": "^8.0",
     "ext-pdo": "*",
-    "laravel/framework": "^8.30"
+    "laravel/framework": "^8.30 | ^9.0"
   },
   "suggest": {
     "laravel/framework": ""
